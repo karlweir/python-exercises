@@ -115,7 +115,7 @@ worldPositions = {
         GROUND: ['Apple']},
     '111': {
         DESC: 'Cold silence surrounds you.',
-        NORTH: ('110', 'The darkness stares back at you'),
+        NORTH: ('110', 'With a squint, you make out a still shape in the darkness'),
         EAST: ('121', 'The darkness stares back at you'),
         SOUTH: ('112', 'The darkness stares back at you'),
         WEST: ('101', 'The darkness stares back at you'),
@@ -667,6 +667,14 @@ class TextAdventureCmd(cmd.Cmd):
 if __name__ == '__main__':
     print()
     print()
+    print('                                     @@@@     ')
+    print('                                   @@@@@@@@   ')
+    print('                                  @@@@@@@@@@  ')
+    print('                                   @@@@@@@@   ')
+    print('                                     @@@@     ')
+    print('                                      ||      ')
+    print('                                      ||      ')
+    print('                                      ||      ')
     print('                                 A S H T R E E')
     print('                                 =============')
     print()
