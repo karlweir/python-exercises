@@ -69,6 +69,7 @@ SHORTDESC = 'shortdesc'
 LONGDESC = 'longdesc'
 TAKEABLE = 'takeable'
 EDIBLE = 'edible'
+OPENABLE = 'openable'
 DESCWORDS = 'descwords'
 
 SCREEN_WIDTH = 80
@@ -90,32 +91,34 @@ areas the exist in the direction.
 """
 
 worldPositions = {
+    # Room 1
+    # Perhaps give each room another tuple value determining what kind of room it is
     '100': {
         DESC: 'Ash colored walls block your way on the West and North side.',
-        EAST: ('110', 'With a squint, you make out a still shape in the darkness'),
+        EAST: ('110', 'You make out a still shape in the darkness'),
         SOUTH: ('101', 'The darkness stares back at you'),
-        WEST: ('110', 'The darkness stares back at you'),
         GROUND: []},
     '110': {
         DESC: 'The exit comes into focus. You wonder if more horrors lay ahead.',
-        EAST: ('100', 'The darkness stares back at you'),
+        NORTH: ('224', 'Exit'),
+        EAST: ('120', 'The darkness stares back at you'),
         SOUTH: ('111', 'The darkness stares back at you'),
-        WEST: ('120', 'The darkness stares back at you'),
+        WEST: ('100', 'The darkness stares back at you'),
         GROUND: ['Wooden Door']},
     '120': {
         DESC: 'Ash colored walls block your way on the North and East side.',
         SOUTH: ('121', 'The darkness stares back at you'),
-        WEST: ('110', 'With a squint, you make out a still shape in the darkness'),
+        WEST: ('110', 'You make out a still shape in the darkness'),
         GROUND: []},
     '101': {
         DESC: 'An Ash colored walls blocks your way on the West side',
         NORTH: ('100', 'The darkness stares back at you'),
         EAST: ('111', 'The darkness stares back at you'),
         SOUTH: ('102', 'The darkness stares back at you'),
-        GROUND: ['Apple']},
+        GROUND: []},
     '111': {
         DESC: 'Cold silence surrounds you.',
-        NORTH: ('110', 'With a squint, you make out a still shape in the darkness'),
+        NORTH: ('110', 'You make out a still shape in the darkness'),
         EAST: ('121', 'The darkness stares back at you'),
         SOUTH: ('112', 'The darkness stares back at you'),
         WEST: ('101', 'The darkness stares back at you'),
@@ -125,7 +128,7 @@ worldPositions = {
         NORTH: ('120', 'The darkness stares back at you'),
         SOUTH: ('122', 'The darkness stares back at you'),
         WEST: ('111', 'The darkness stares back at you'),
-        GROUND: ['Note #1']},
+        GROUND: []},
     '102': {
         DESC: 'Ash colored walls block your way on the South and West side.',
         NORTH: ('101', 'The darkness stares back at you'),
@@ -141,7 +144,164 @@ worldPositions = {
         DESC: 'Ash colored walls block your way on the South and East side.',
         NORTH: ('121', 'The darkness stares back at you'),
         WEST: ('112', 'The darkness stares back at you'),
-        GROUND: []},    
+        GROUND: []},
+    # Room 2
+    '200': {
+        DESC: 'Ash colored walls block your way on the North and West side.',
+        EAST: ('210', 'The darkness stares back at you.'),
+        SOUTH: ('201', 'The darkness stares back at you.'),
+        GROUND: []},
+    '210': {
+        DESC: 'An Ash colored wall blocks your way on the North side.',
+        EAST: ('220', 'You make out a still shape in the darkness'),
+        SOUTH: ('211', 'The darkness stares back at you.'),
+        WEST: ('200', 'The darkness stares back at you.'),
+        GROUND: []},
+    '220': {
+        DESC: 'The exit comes into focus. You wonder if more horrors lay ahead.',
+        NORTH: ('323', 'Exit'),
+        EAST: ('230', 'The darkness stares back at you.'),
+        SOUTH: ('221', 'The darkness stares back at you.'),
+        WEST: ('210', 'The darkness stares back at you.'),
+        GROUND: []},
+    '230': {
+        DESC: 'An Ash colored wall blocks your way on the North side.',
+        EAST: ('240', 'The darkness stares back at you.'),
+        SOUTH: ('231', 'The darkness stares back at you.'),
+        WEST: ('220', 'You make out a still shape in the darkness'),
+        GROUND: []},
+    '240': {
+        DESC: 'Ash colored walls block your way on the North and East side.',
+        SOUTH: ('241', 'The darkness stares back at you.'),
+        WEST: ('230', 'The darkness stares back at you.'),
+        GROUND: []},
+    '201': {
+        DESC: 'An Ash colored wall blocks your way on the West side.',
+        NORTH: ('200', 'The darkness stares back at you.'),
+        EAST: ('211', 'The darkness stares back at you.'),
+        SOUTH: ('202', 'The darkness stares back at you.'),
+        GROUND: []},
+    '211': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('210', 'The darkness stares back at you.'),
+        EAST: ('221', 'The darkness stares back at you.'),
+        SOUTH: ('212','The darkness stares back at you.'),
+        WEST: ('201', 'The darkness stares back at you.'),
+        GROUND: []},
+    '221': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('220', 'You make out a still shape in the darkness'),
+        EAST: ('231', 'The darkness stares back at you.'),
+        SOUTH: ('222', 'The darkness stares back at you.'),
+        WEST: ('211', 'The darkness stares back at you.'),
+        GROUND: []},
+    '231': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('223', 'The darkness stares back at you.'),
+        EAST: ('241', 'The darkness stares back at you.'),
+        SOUTH: ('232','The darkness stares back at you.'),
+        WEST: ('221', 'The darkness stares back at you.'),
+        GROUND: []},
+    '241': {
+        DESC: 'An Ash colored wall blocks your way on the East side.',
+        NORTH: ('240', 'The darkness stares back at you.'),
+        SOUTH: ('242', 'The darkness stares back at you.'),
+        WEST: ('231', 'The darkness stares back at you.'),
+        GROUND: []},
+    '202': {
+        DESC: 'An Ash colored wall blocks your way on the West side.',
+        NORTH: ('201', 'The darkness stares back at you.'),
+        EAST: ('212', 'The darkness stares back at you.'),
+        SOUTH: ('203', 'The darkness stares back at you.'),
+        GROUND: []},
+    '212': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('212', 'The darkness stares back at you.'),
+        EAST: ('222', 'The darkness stares back at you.'),
+        SOUTH: ('213', 'The darkness stares back at you.'),
+        WEST: ('202', 'The darkness stares back at you.'),
+        GROUND: []},
+    '222': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('221', 'The darkness stares back at you.'),
+        EAST: ('232', 'The darkness stares back at you.'),
+        SOUTH: ('223', 'The darkness stares back at you.'),
+        WEST: ('212', 'The darkness stares back at you.'),
+        GROUND: []},
+    '232': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('231', 'The darkness stares back at you.'),
+        EAST: ('242', 'The darkness stares back at you.'),
+        SOUTH: ('232','The darkness stares back at you.'),
+        WEST: ('222', 'The darkness stares back at you.'),
+        GROUND: []},
+    '242': {
+        DESC: 'An Ash colored wall blocks your way on the East side.',
+        NORTH: ('241', 'The darkness stares back at you.'),
+        SOUTH: ('243', 'The darkness stares back at you.'),
+        WEST: ('232', 'The darkness stares back at you.'),
+        GROUND: []},
+    '203': {
+        DESC: 'An Ash colored wall blocks your way on the West side.',
+        NORTH: ('202', 'The darkness stares back at you.'),
+        EAST: ('213', 'The darkness stares back at you.'),
+        SOUTH: ('204','The darkness stares back at you.'),
+        GROUND: []},
+    '213': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('212', 'The darkness stares back at you.'),
+        EAST: ('223', 'The darkness stares back at you.'),
+        SOUTH: ('214', 'The darkness stares back at you.'),
+        WEST: ('203', 'The darkness stares back at you.'),
+        GROUND: []},
+    '223': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('222', 'The darkness stares back at you.'),
+        EAST: ('233', 'The darkness stares back at you.'),
+        SOUTH: ('224','The darkness stares back at you.'),
+        WEST: ('213', 'The darkness stares back at you.'),
+        GROUND: []},
+    '233': {
+        DESC: 'Cold silence surrounds you.',
+        NORTH: ('232', 'The darkness stares back at you.'),
+        EAST: ('243', 'The darkness stares back at you.'),
+        SOUTH: ('234', 'The darkness stares back at you.'),
+        WEST: ('223', 'The darkness stares back at you.'),
+        GROUND: []}, 
+    '243': {
+        DESC: 'An Ash colored wall blocks your way on the East side.',
+        NORTH: ('242', 'The darkness stares back at you.'),
+        WEST: ('233', 'The darkness stares back at you.'),
+        SOUTH: ('244', 'The darkness stares back at you.'),
+        GROUND: []},
+    '204': {
+        DESC: 'Ash colored walls block your way on the South and West side.',
+        NORTH: ('203', 'The darkness stares back at you.'),
+        EAST: ('214', 'The darkness stares back at you.'),
+        GROUND: []},
+    '214': {
+        DESC: 'An Ash colored wall blocks your way on the South side.',
+        NORTH: ('213', 'The darkness stares back at you.'),
+        EAST: ('224', 'The darkness stares back at you.'),
+        WEST: ('204', 'The darkness stares back at you.'),
+        GROUND: []},
+    '224': {
+        DESC: 'You walk through the door to find yourself in a room that feels exactly the same as the previous. However, the sound of your footsteps seem to take longer to reflect off of the walls',
+        NORTH: ('223', 'The darkness stares back at you.'),
+        EAST: ('234', 'The darkness stares back at you.'),
+        WEST: ('214', 'The darkness stares back at you.'),
+        GROUND: ['Apple']},
+    '234': {
+        DESC: 'An Ash colored wall blocks your way on the South side.',
+        NORTH: ('233', 'The darkness stares back at you.'),
+        EAST: ('244', 'The darkness stares back at you.'),
+        WEST: ('224', 'The darkness stares back at you.'),
+        GROUND: []},
+    '244': {
+        DESC: 'Ash colored walls block your way on the South and East side.',
+        NORTH: ('243', 'The darkness stares back at you.'),
+        WEST: ('234', 'The darkness stares back at you.'),
+        GROUND: []},
 }
 
 worldItems = {
@@ -150,6 +310,7 @@ worldItems = {
         SHORTDESC: 'a wooden door',
         LONGDESC: 'The hinges on the door are rusted and bearly keeping the door on the wall. You breath in deeply and wonder how such a dry environment could cause this.',
         TAKEABLE: False,
+        OPENABLE: True,
         DESCWORDS: ['door', 'wooden door', 'deteriorated wooden door']},
     'Apple': {
         GROUNDDESC: 'An apple sits on the floor.',
@@ -185,6 +346,7 @@ def displayLocation(loc):
     # Print the room's description (using textwrap.wrap())
     print()
     print('\n'.join(textwrap.wrap(worldPositions[loc][DESC], SCREEN_WIDTH)))
+    #print(location) #uncomment to see room IDs as you enter them
 
     # Print all the items on the ground.
     if len(worldPositions[loc][GROUND]) > 0:
@@ -199,12 +361,13 @@ def displayLocation(loc):
         if direction in worldPositions[loc].keys():
             exits.append(direction.title())
     print()
-    # Print a description for each direction around the player 
+    # Print a description for each direction around the player
+    print('=' * 50)
     if showExitDescriptions:
             for direction in (NORTH, SOUTH, EAST, WEST, UP, DOWN,):
                 if direction in worldPositions[location]:
-                    print('%s: %s' % (direction.title(), worldPositions[location][direction][1]))
-
+                    print('%s: %s' % (direction.title(), worldPositions[location][direction][1])) #Insert [1] after [direction to not print out room IDs]
+    print('=' * 50)
 def moveDirection(direction):
     """ A helper function that changes the location of the player."""
     global location
@@ -298,8 +461,18 @@ class TextAdventureCmd(cmd.Cmd):
     do_u = do_up
     do_d = do_down
 
+    def do_info(self, arg):
+        """Display players current Health Points and Sanity."""
+        print()
+        print('Health: %i' % (playerHealth))
+        if (playerHealth > 100):
+            print('You\'re in good physical health.')
+        else :
+            print(' - You don\'t look so good. Find food and eat to replenish HP.')
+        print('Sanity: %i' % (playerSanity))
+
     def do_exits(self, arg):
-        """Toggle showing full exit descriptions or brief exit descriptions."""
+        """Toggle showing full exit descriptions or brief exit descriptions. Brief exit descriptions are basically hard mode."""
         global showExitDescriptions
         showExitDescriptions = not showExitDescriptions
         if showExitDescriptions:
@@ -307,6 +480,7 @@ class TextAdventureCmd(cmd.Cmd):
         else:
             print('Showing brief exit descriptions.')
 
+    
     def do_inventory(self, arg):
         """Display a list of the items in your possession."""
 
@@ -331,7 +505,7 @@ class TextAdventureCmd(cmd.Cmd):
                 print('  ' + item)
 
     do_inv = do_inventory
-
+    
 
     def do_take(self, arg):
         """"take <item> - Take an item on the ground."""
@@ -518,111 +692,9 @@ class TextAdventureCmd(cmd.Cmd):
 
         return list(set(possibleItems)) # make list unique
 
-
-    def do_list(self, arg):
-        """List the items for sale at the current location's shop. "list full" will show details of the items."""
-        if SHOP not in worldPositions[location]:
-            print('This is not a shop.')
-            return
-
-        arg = arg.lower()
-
-        print('For sale:')
-        for item in worldPositions[location][SHOP]:
-            print('  - %s' % (item))
-            if arg == 'full':
-                print('\n'.join(textwrap.wrap(worldItems[item][LONGDESC], SCREEN_WIDTH)))
-
-
-    def do_buy(self, arg):
-        """"buy <item>" - buy an item at the current location's shop."""
-        if SHOP not in worldPositions[location]:
-            print('This is not a shop.')
-            return
-
-        itemToBuy = arg.lower()
-
-        if itemToBuy == '':
-            print('Buy what? Type "list" or "list full" to see a list of items for sale.')
-            return
-
-        item = getFirstItemMatchingDesc(itemToBuy, worldPositions[location][SHOP])
-        if item != None:
-            # NOTE - If you wanted to implement money, here is where you would add
-            # code that checks if the player has enough, then deducts the price
-            # from their money.
-            print('You have purchased %s' % (worldItems[item][SHORTDESC]))
-            inventory.append(item)
-            return
-
-        print('"%s" is not sold here. Type "list" or "list full" to see a list of items for sale.' % (itemToBuy))
-
-
-    def complete_buy(self, text, line, begidx, endidx):
-        if SHOP not in worldPositions[location]:
-            return []
-
-        itemToBuy = text.lower()
-        possibleItems = []
-
-        # if the user has only typed "buy" but no item name:
-        if not itemToBuy:
-            return getAllFirstDescWords(worldPositions[location][SHOP])
-
-        # otherwise, get a list of all "description words" for shop items matching the command text so far:
-        for item in list(set(worldPositions[location][SHOP])):
-            for descWord in worldItems[item][DESCWORDS]:
-                if descWord.startswith(text):
-                    possibleItems.append(descWord)
-
-        return list(set(possibleItems)) # make list unique
-
-
-    def do_sell(self, arg):
-        """"sell <item>" - sell an item at the current location's shop."""
-        if SHOP not in worldPositions[location]:
-            print('This is not a shop.')
-            return
-
-        itemToSell = arg.lower()
-
-        if itemToSell == '':
-            print('Sell what? Type "inventory" or "inv" to see your inventory.')
-            return
-
-        for item in inventory:
-            if itemToSell in worldItems[item][DESCWORDS]:
-                # NOTE - If you wanted to implement money, here is where you would add
-                # code that gives the player money for selling the item.
-                print('You have sold %s' % (worldItems[item][SHORTDESC]))
-                inventory.remove(item)
-                return
-
-        print('You do not have "%s". Type "inventory" or "inv" to see your inventory.' % (itemToSell))
-
-
-    def complete_sell(self, text, line, begidx, endidx):
-        if SHOP not in worldPositions[location]:
-            return []
-
-        itemToSell = text.lower()
-        possibleItems = []
-
-        # if the user has only typed "sell" but no item name:
-        if not itemToSell:
-            return getAllFirstDescWords(inventory)
-
-        # otherwise, get a list of all "description words" for inventory items matching the command text so far:
-        for item in list(set(inventory)):
-            for descWord in worldItems[item][DESCWORDS]:
-                if descWord.startswith(text):
-                    possibleItems.append(descWord)
-
-        return list(set(possibleItems)) # make list unique
-
-
     def do_eat(self, arg):
         """"eat <item>" - eat an item in your inventory."""
+        global playerHealth
         itemToEat = arg.lower()
 
         if itemToEat == '':
@@ -637,6 +709,8 @@ class TextAdventureCmd(cmd.Cmd):
                 continue # there may be other items named this that you can eat, so we continue checking
             # NOTE - If you wanted to implement hunger levels, here is where
             # you would add code that changes the player's hunger level.
+
+            playerHealth += 25
             print('You eat %s' % (worldItems[item][SHORTDESC]))
             inventory.remove(item)
             return
@@ -682,10 +756,9 @@ if __name__ == '__main__':
     print('(Type "help" for commands.)')
     print()
     time.sleep(1)
-    print('\n'.join(textwrap.wrap('The door leading back slams closed behind you, you scramble at the handle but the door won\'t let you go back. You slump to the ground and bury your face into your hands, somehow trying to stop the darkness suffocating you. Panic sets in... A few moments later your heart begins to slow. You bring your hands from your face to out in front of you and watch them disappear into the dark. ', SCREEN_WIDTH)))
+    print('\n'.join(textwrap.wrap('The door leading back slams closed behind you, you scramble at the handle but the door won\'t let you go back. You slump to the ground and bury your face into your hands, somehow trying to stop the darkness suffocating you. Panic sets in... A few moments later your heart begins to slow. You bring your hands from your face to out in front of you and watch them disappear into the dark. The only sound you can hear is your footsteps echoing back. You seem to be in a relatively small room.', SCREEN_WIDTH)))
     print()
     time.sleep(3)
     displayLocation(location)
     TextAdventureCmd().cmdloop()
     print('Thanks for playing!')
-
