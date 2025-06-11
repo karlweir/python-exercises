@@ -86,7 +86,19 @@ playerHealth = 150
 playerSanity = 1000
 showExitDescriptions = True
 
-import cmd, textwrap, time
+import cmd, textwrap, time, sys
+
+def changeSanity(amount):
+    """Adjust player sanity and check for game over."""
+    global playerSanity
+    playerSanity += amount
+    if playerSanity < 0:
+        playerSanity = 0
+    if playerSanity <= 0:
+        print('Your mind can no longer handle the darkness...')
+        sys.exit()
+    if playerSanity <= 200:
+        print('Your sanity wavers...')
 
 def displayLocation(loc):
     """A helper function for displaying an area's description and exits."""
@@ -125,6 +137,7 @@ def moveDirection(direction):
         print('You move to the %s.' % direction)
         location = worldPositions[location][direction][0]
         displayLocation(location)
+        changeSanity(-10)
     else:
         print('Grey ash walls stop you from going further')
 
@@ -218,6 +231,8 @@ class TextAdventureCmd(cmd.Cmd):
         else :
             print(' - You don\'t look so good. Find food and eat to replenish HP.')
         print('Sanity: %i' % (playerSanity))
+        if playerSanity <= 200:
+            print(' - Your mind feels on the verge of collapse.')
 
     def do_exits(self, arg):
         """Toggle showing full exit descriptions or brief exit descriptions. Brief exit descriptions are basically hard mode."""
@@ -439,6 +454,32 @@ class TextAdventureCmd(cmd.Cmd):
                 possibleItems.append(descWord)
 
         return list(set(possibleItems)) # make list unique
+
+    def do_read(self, arg):
+        """read <item> - read an item from the ground or your inventory."""
+        itemToRead = arg.lower()
+        if itemToRead == '':
+            print('Read what?')
+            return
+        item = getFirstItemMatchingDesc(
+            itemToRead,
+            worldPositions[location][GROUND] + inventory
+        )
+        if item is None:
+            print('You do not see that here.')
+            return
+        print('\n'.join(textwrap.wrap(worldItems[item][LONGDESC], SCREEN_WIDTH)))
+        if 'note' in worldItems[item][DESCWORDS]:
+            changeSanity(-50)
+
+    def complete_read(self, text, line, begidx, endidx):
+        possibleItems = []
+        query = text.lower()
+        descWords = getAllDescWords(inventory + worldPositions[location][GROUND])
+        for word in descWords:
+            if word.startswith(query):
+                possibleItems.append(word)
+        return list(set(possibleItems))
 
     def do_eat(self, arg):
         """"eat <item>" - eat an item in your inventory."""
