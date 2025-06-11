@@ -243,7 +243,7 @@ worldItems = {
     'Wooden Door': {
         GROUNDDESC: 'A deteriorated wooden door looks back at you from the north wall.',
         SHORTDESC: 'a wooden door',
-        LONGDESC: 'The hinges on the door are rusted and bearly keeping the door on the wall. You breath in deeply and wonder how such a dry environment could cause this.',
+        LONGDESC: 'The hinges on the door are rusted and barely keeping the door on the wall. You breathe in deeply and wonder how such a dry environment could cause this.',
         TAKEABLE: False,
         OPENABLE: True,
         DESCWORDS: ['door', 'wooden door', 'deteriorated wooden door']},
@@ -254,8 +254,8 @@ worldItems = {
         EDIBLE: True,
         DESCWORDS: ['apple']},
     'Note #1': {
-        GROUNDDESC: 'A peice of paper lays on the ground',
-        SHORTDESC: 'a peice of paper',
+        GROUNDDESC: 'A piece of paper lays on the ground',
+        SHORTDESC: 'a piece of paper',
         LONGDESC: "You bring the note close to your face and begin to read.. \n\n I don't know for sure if anyone will ever find this. I don't even know where I am. I just had to write something down before I went crazy from the dark silence. My sweet Lucy, why didn't you listen to me? Why  did you go through the door?",
-        DESCWORDS: ['note', 'paper', 'peice of paper']}
+        DESCWORDS: ['note', 'paper', 'piece of paper']}
 }
