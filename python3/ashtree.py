@@ -485,6 +485,55 @@ class TextAdventureCmd(cmd.Cmd):
 
         return list(set(possibleItems)) # make list unique
 
+    def do_open(self, arg):
+        """"open <item>" - open an item if possible."""
+        itemToOpen = arg.lower()
+
+        if itemToOpen == '':
+            print('Open what?')
+            return
+
+        # combine ground and inventory items
+        openableSources = inventory + worldPositions[location][GROUND]
+
+        for item in getAllItemsMatchingDesc(itemToOpen, openableSources):
+            if worldItems[item].get(OPENABLE, False):
+                print('You open %s.' % (worldItems[item][SHORTDESC]))
+                # remove from ground if present (door swings open etc.)
+                if item in worldPositions[location][GROUND]:
+                    worldPositions[location][GROUND].remove(item)
+                # redisplay location to show any new exits/items
+                displayLocation(location)
+                return
+
+        print('You cannot open "%s".' % (itemToOpen))
+
+
+    def complete_open(self, text, line, begidx, endidx):
+        itemToOpen = text.lower()
+        possibleItems = []
+
+        openableItems = [item for item in set(inventory + worldPositions[location][GROUND])
+                          if worldItems[item].get(OPENABLE, False)]
+
+        for item in openableItems:
+            for descWord in worldItems[item][DESCWORDS]:
+                if line.startswith('open %s' % descWord):
+                    return []  # command complete
+
+        if itemToOpen == '':
+            return getAllFirstDescWords(openableItems)
+
+        for item in openableItems:
+            for descWord in worldItems[item][DESCWORDS]:
+                if descWord.startswith(itemToOpen):
+                    possibleItems.append(descWord)
+
+        return list(set(possibleItems))
+
+    do_o = do_open
+
+
 
 if __name__ == '__main__':
     print()
